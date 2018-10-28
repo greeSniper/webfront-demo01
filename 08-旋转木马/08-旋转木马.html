@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转木马</title>
+    <link rel="stylesheet" href="css.css"/>
+    <script src="../common.js"></script>
+    <script>
+        var config = [
+            {
+                width: 400,
+                top: 20,
+                left: 50,
+                opacity: 0.2,
+                zIndex: 2
+            },
+            {
+                width: 600,
+                top: 70,
+                left: 0,
+                opacity: 0.8,
+                zIndex: 3
+            },
+            {
+                width: 800,
+                top: 100,
+                left: 200,
+                opacity: 1,
+                zIndex: 4
+            },
+            {
+                width: 600,
+                top: 70,
+                left: 600,
+                opacity: 0.8,
+                zIndex: 3
+            },
+            {
+                width: 400,
+                top: 20,
+                left: 750,
+                opacity: 0.2,
+                zIndex: 2
+            }
+        ];
+
+        window.onload = function () {
+            var flag = true; // 锁，等待动画结束后再旋转
+            var list = my$("slide").getElementsByTagName("li");
+            // 图片散开
+            function assign() {
+                for (var i=0; i<list.length; i++) {
+                    animate(list[i], config[i], function () {
+                        flag = true;
+                    });
+                }
+            }
+            assign();
+
+            my$("slide").onmouseover = function () {
+                animate(my$("arrow"), {"opacity": 1});
+            };
+
+            my$("slide").onmouseout = function () {
+                animate(my$("arrow"), {"opacity": 0});
+            };
+
+            my$("arrRight").onclick = function () {
+                if (flag) {
+                    flag = false;
+                    config.unshift(config.pop());
+                    assign();
+                }
+            };
+
+            my$("arrLeft").onclick = function () {
+                if (flag) {
+                    flag = false;
+                    config.push(config.shift());
+                    assign();
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+<div class="wrap" id="wrap">
+    <div class="slide" id="slide">
+        <ul>
+            <li><a href="#"><img src="images/slidepic1.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic2.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic3.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic4.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic5.jpg" alt=""/></a></li>
+        </ul>
+        <div class="arrow" id="arrow">
+            <a href="javascript:void(0);" class="prev" id="arrLeft"></a>
+            <a href="javascript:void(0);" class="next" id="arrRight"></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

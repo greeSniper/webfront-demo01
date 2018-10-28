@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证密码的强度</title>
+    <style type="text/css">
+        #dv{
+            width: 300px;
+            height:200px;
+            position: absolute;
+            left:300px;
+            top:100px;
+        }
+        .strengthLv0 {
+            height: 6px;
+            width: 120px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        .strengthLv1 {
+            background: red;
+            height: 6px;
+            width: 40px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        .strengthLv2 {
+            background: orange;
+            height: 6px;
+            width: 80px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+        .strengthLv3 {
+            background: green;
+            height: 6px;
+            width: 120px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+<div id="dv">
+    <label for="pwd">密码</label>
+    <input type="text" id="pwd" maxlength="16">
+    <div>
+        <em>密码强度：</em>
+        <em id="strength"></em>
+        <div id="strengthLevel" class="strengthLv0"></div>
+    </div>
+</div>
+<script>
+    document.getElementById("pwd").onkeyup = function () {
+        document.getElementById("strengthLevel").className = "strengthLv" + (this.value.length>=6 ? getLevel(this.value) : 0);
+    };
+
+    /**
+     * 获取密码等级
+     * @param password
+     */
+    function getLevel(password) {
+        var level = 0;
+        // 密码中包含数字，等级加一
+        if (/[0-9]/.test(password)) {
+            level ++;
+        }
+        // 密码中包含字母，等级再加一
+        if (/[a-zA-Z]/.test(password)) {
+            level ++;
+        }
+        // 密码中包含特殊字符，等级再加一
+        if (/\W/.test(password)) {
+            level ++;
+        }
+        // 等级最小为1，最大为3
+        return level;
+    }
+</script>
+</body>
+</html>

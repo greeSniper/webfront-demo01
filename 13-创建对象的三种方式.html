@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建对象的三种方式</title>
+    <script>
+        /**
+         * 创建对象的三种方式：
+         * 1. 字面量的方式
+         * 2. 调用系统的构造函数
+         * 3. 自定义构造函数方式
+         */
+
+        // 1
+        var user1 = {
+            name: "张三",
+            age: 20,
+            sex: "男",
+            eat: function () {
+                console.log("吃臭豆腐");
+            },
+            sleep: function () {
+                console.log("呼呼大睡");
+            }
+        };
+        var user2 = {
+            name: "李四",
+            age: 18,
+            sex: "男",
+            eat: function () {
+                console.log("吃榴莲");
+            },
+            sleep: function () {
+                console.log("优雅地睡");
+            }
+        };
+        user1.eat();
+        user2.sleep();
+        console.log(user1 instanceof Object);
+
+        // 2
+        var user3 = new Object();
+        user3.name = "王五";
+        user3.age = 22;
+        user3.sex = "女";
+        user3.eat = function () {
+            console.log("吃牛排");
+        };
+        user3.play = function () {
+            console.log("玩王者农药");
+        };
+        console.log(user3.name);
+        user3.play();
+        console.log(user1 instanceof Object);
+
+        // 3
+        function User(name, age, sex, eat, game) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.eat = function () {
+                console.log(eat);
+            };
+            this.play = function () {
+                console.log(game);
+            }
+        }
+        var user4 = new User("日向", 19, "女", "香肠", "和鸣人睡觉");
+        console.log(user4.name);
+        user4.eat();
+        user4.play();
+        console.log(user4 instanceof Object);
+        console.log(user4 instanceof User);
+        console.log(user4.constructor == User)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

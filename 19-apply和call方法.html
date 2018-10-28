@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>apply和call方法</title>
+</head>
+<body>
+<script>
+    /*
+    * apply和call的使用方法
+    * apply的使用语法
+    * 函数名字.apply(对象,[参数1,参数2,...]);
+    * 方法名字.apply(对象,[参数1,参数2,...]);
+    *
+    * call的使用语法
+    * 函数名字.call(对象,参数1,参数2,...);
+    * 方法名字.call(对象,参数1,参数2,...);
+    *
+    * 作用:改变this的指向
+    * 不同的地方:参数传递的方式是不一样的
+    *
+    * 只要是想使用别的对象的方法,并且希望这个方法是当前对象的,
+    * 那么就可以使用apply或者是call的方法改变this的指向
+    * */
+    function f1(a, b) {
+        console.log(this); // 这个this是window
+        return a + b;
+    }
+    f1(100, 200);
+
+    var res1 = f1.apply(null, [100, 200]); // 此时f1中的this是window
+    var res2 = f1.call(null, 100, 200); // 此时f1中的this是window
+    console.log(res1, res2);
+
+    var obj = {
+        age: 18
+    };
+    res1 = f1.apply(obj, [100, 200]); // 此时f1中的this是obj
+    res2 = f1.call(obj, 100, 200); // 此时f1中的this是obj
+    console.log(res1, res2);
+
+    ////////////////////////////////////////////////////////
+    function Person(age) {
+        this.age = age;
+    }
+    Person.prototype.eat = function () {
+        console.log("吃饭, " + this.age);
+    };
+
+    function Student(age) {
+        this.age = age;
+    }
+
+    var per = new Person(18);
+    var stu = new Student(20);
+    per.eat(); // 此时eat方法中的this是per
+    per.eat.apply(stu); // 此时eat方法中的this是stu
+    per.eat.call(stu); // 此时eat方法中的this是stu
+    var bind = per.eat.bind(stu);
+    bind();
+</script>
+
+</body>
+</html>

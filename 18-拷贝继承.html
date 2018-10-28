@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拷贝继承</title>
+</head>
+<body>
+<script>
+    function Person() {}
+
+    Person.prototype.name = "zhangsan";
+    Person.prototype.age = 18;
+    Person.prototype.eat = function () {
+      console.log("吃饭");
+    };
+
+    var stu = {};
+    for (var key in Person.prototype) {
+        stu[key] = Person.prototype[key];
+    }
+    console.log(stu.name, stu.age);
+    stu.eat();
+    console.dir(stu);
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟百度搜索</title>
+    <style type="text/css">
+        #box {
+            width: 450px;
+            margin: 200px auto;
+        }
+
+        #txt {
+            width: 350px;
+        }
+        .content {
+            width: 350px;
+            border: 1px solid green;
+        }
+        .rex {
+            margin: 5px 0 0 5px;
+            padding: 0;
+            cursor: pointer;
+        }
+    </style>
+    <script src="common.js"></script>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="txt" value="">
+    <input type="button" value="搜索" id="btn">
+</div>
+<script>
+    var keyWords = ["小杨才是最纯洁的", "小杨才是最帅的", "小段是最猥琐的",
+        "小超是最龌龊的", "传智播客是一个培训机构", "传说在传智有个很帅很纯洁的小杨",
+        "苹果好吃", "苹果此次召回还是没有中国"];
+
+    // 文本框注册键盘抬起事件
+    my$("txt").onkeyup = function () {
+        // 每一次的键盘抬起都判断页面中有没有这个div
+        if (my$("content")) {
+            my$("box").removeChild(my$("content"));
+        }
+
+        // 将匹配的文本放入临时数组中
+        var text = this.value;
+        var textArr = [];
+        for (var i=0; i<keyWords.length; i++) {
+            if (keyWords[i].indexOf(text) == 0) {
+                textArr.push(keyWords[i]);
+            }
+        }
+        //console.log(textArr);
+
+        // 如果页面中有这个div, 删除这个div
+        if (text.length==0 || textArr.length==0) {
+            if (my$("content")) {
+                my$("box").removeChild(my$("content"));
+            }
+            return;
+        }
+
+        // 创建放置匹配文本的div
+        var divObj = document.createElement("div");
+        my$("box").appendChild(divObj);
+        divObj.className = "content";
+        divObj.id = "content";
+
+        // 遍历临时数组，将文本放置在id为content的div中
+        for (var i=0; i<textArr.length; i++) {
+            var pObj = document.createElement("p");
+            divObj.appendChild(pObj);
+            pObj.className = "rex";
+            setInnerText(pObj, textArr[i]);
+
+            // 注册鼠标事件高亮
+            pObj.onmouseover = function () {
+                this.style.backgroundColor = "yellow";
+            };
+            pObj.onmouseout = function () {
+                this.style.backgroundColor = "";
+            };
+
+            // 注册点击事件选中内容
+            pObj.onclick = function () {
+                var txt = getInnerText(this);
+                my$("txt").value = txt;
+                if (my$("content")) {
+                    my$("box").removeChild(my$("content"));
+                }
+            };
+        }
+    }
+</script>
+</body>
+</html>

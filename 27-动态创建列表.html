@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态创建列表</title>
+    <style>
+        div {
+            width: 300px;
+            height: 600px;
+            border: 2px dotted darkgreen;
+        }
+    </style>
+    <script src="jquery-1.12.1.js"></script>
+    <script>
+        $(function () {
+            var arr = [
+                "风斯托罗斯基", "小苏坨萝斯基", "助教坨萝斯基",
+                "尼古拉斯凯奇赵四", "小胖妞", "杰森斯坦森班主任",
+                "小明", "小红", "小李", "小白", "小绿", "小黑"];
+
+            $("#btn1").click(function () {
+                var $ulObj = $("<ul style='cursor: pointer'></ul>").appendTo($("#div1"));
+                for (var i=0; i<arr.length; i++) {
+                    $("<li></li>").text(arr[i]).appendTo($ulObj).mouseenter(function () {
+                        $(this).css("backgroundColor","darkgreen");
+                    }).mouseleave(function () {
+                        $(this).css("backgroundColor","");
+                    });
+                }
+            });
+
+            $("#btn2").click(function () {
+                $("#div1>ul").appendTo($("#div2"));
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="创建" id="btn1"/>
+<input type="button" value="剪切" id="btn2"/>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

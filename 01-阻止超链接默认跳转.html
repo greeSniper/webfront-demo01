@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebApi</title>
+</head>
+<body>
+    <!-- 第一种方式 -->
+    <div>
+        <a href="http://www.baidu.com" onclick="alert('哎呀，我被点了'); return false">第一种方式</a>
+    </div>
+
+    <!-- 第二种方式 -->
+    <div>
+        <a href="http://www.baidu.com" onclick="return f1();">第二种方式</a>
+    </div>
+    <script>
+        function f1() {
+            alert("哎呀，我被点了");
+            return false;
+        }
+    </script>
+
+    <!-- 第三种方式 -->
+    <div>
+        <a href="http://www.baidu.com" id="a1">第三种方式</a>
+    </div>
+    <script>
+        document.getElementById("a1").onclick = function () {
+            alert("哎呀，我被点了");
+            return false;
+        }
+    </script>
+</body>
+</html>

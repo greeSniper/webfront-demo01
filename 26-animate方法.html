@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animate方法</title>
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+    <script src="jquery-1.12.1.js"></script>
+    <script>
+        $(function () {
+            $("#im")
+                .animate({"width":"300px","height":"300px","left":"100px","top":"100px"}, 3000)
+                .animate({"width":"30px","height":"30px","left":"10px","top":"600px"}, 300)
+                .animate({"width":"50px","height":"50px","left":"800px","top":"20px","opacity":0.5}, 2000);
+        });
+    </script>
+</head>
+<body>
+<img src="images/bird.png" alt="" id="im" />
+</body>
+</html>

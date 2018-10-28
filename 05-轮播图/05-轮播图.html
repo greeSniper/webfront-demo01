@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+<div class="all" id='box'>
+    <div class="screen"><!-- 相框 -->
+        <ul>
+            <li><img src="images/1.jpg" width="500" height="200"/></li>
+            <li><img src="images/2.jpg" width="500" height="200"/></li>
+            <li><img src="images/3.jpg" width="500" height="200"/></li>
+            <li><img src="images/4.jpg" width="500" height="200"/></li>
+            <li><img src="images/5.jpg" width="500" height="200"/></li>
+        </ul>
+        <ol>
+        </ol>
+    </div>
+    <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+</div>
+<script src="../common.js"></script>
+<script>
+    //获取最外面的div
+    var box = my$("box");
+    //获取相框
+    var screen = box.children[0];
+    //获取相框的宽度
+    var imgWidth = screen.offsetWidth;
+    //获取ul
+    var ulObj = screen.children[0];
+    //获取ul中的所有的li
+    var list = ulObj.children;
+    //获取ol
+    var olObj = screen.children[1];
+
+    var idx = 0;
+    var index = 0;
+    for (var i=0; i<list.length; i++) {
+        // 动态设置右下角小图标
+        var liObj = document.createElement("li");
+        olObj.appendChild(liObj);
+        setInnerText(liObj, i+1);
+
+        liObj.setAttribute("index", i);
+        // 为小图标注册鼠标进入事件
+        liObj.onmouseover = function () {
+            for (var j=0; j<olObj.children.length; j++) {
+                olObj.children[j].removeAttribute("class");
+            }
+            // 设置焦点
+            this.setAttribute("class", "current");
+            // 图片动起来
+            index = this.getAttribute("index");
+            animate(ulObj, -index * imgWidth, Math.abs(index-idx)*10);
+            idx = index;
+        };
+    }
+
+    olObj.children[0].setAttribute("class", "current");
+    // 克隆第一张图片为最后一张图片，可以实现无缝轮播
+    ulObj.appendChild(list[0].cloneNode(true));
+
+    // 自动播放
+    var timeId = setInterval(clickHandler, 1000);
+
+    box.onmouseover = function () {
+        my$("arr").style.display = "block";
+        clearInterval(timeId);
+    };
+
+    box.onmouseout = function () {
+        my$("arr").style.display = "none";
+        timeId = setInterval(clickHandler, 1000);
+    };
+
+    my$("right").onclick = clickHandler;
+
+    function clickHandler() {
+        if (index == list.length-1) {
+            ulObj.style.left = 0 + "px";
+            index = 0;
+        }
+        index ++;
+
+        animate(ulObj, -index * imgWidth, 10);
+
+        if (index == list.length-1) {
+            olObj.children[olObj.children.length-1].removeAttribute("class");
+            olObj.children[0].setAttribute("class", "current");
+        } else {
+            for (var i=0; i<olObj.children.length; i++) {
+                olObj.children[i].removeAttribute("class");
+            }
+            olObj.children[index].setAttribute("class", "current");
+        }
+    }
+
+    my$("left").onclick = function () {
+        if (index == 0) {
+            index = 5;
+            ulObj.style.left = -index * imgWidth + "px";
+        }
+        index --;
+        animate(ulObj, -index * imgWidth, 10);
+        for (var i=0; i<olObj.children.length; i++) {
+            olObj.children[i].removeAttribute("class");
+        }
+        olObj.children[index].setAttribute("class", "current");
+    };
+
+    /**
+     * 设置任意的一个元素, 移动到指定的目标位置
+     * @param element 需要移动的元素
+     * @param target 移动的最终目标
+     * @param dis 每次移动的距离
+     */
+    function animate(element, target, dis) {
+        clearInterval(element.timeId);
+        //定时器的id值存储到对象的一个属性中
+        element.timeId = setInterval(function () {
+            //获取元素的当前的位置,数字类型
+            var current = element.offsetLeft;
+            //每次移动的距离
+            var step = dis;
+            step = current < target ? step : -step;
+            //当前移动到位置
+            current += step;
+            if (Math.abs(current - target) > Math.abs(step)) {
+                element.style.left = current + "px";
+            } else {
+                //清理定时器
+                clearInterval(element.timeId);
+                //直接到达目标
+                element.style.left = target + "px";
+            }
+        }, 10);
+    }
+</script>
+</body>
+</html>

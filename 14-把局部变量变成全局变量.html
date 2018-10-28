@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>把局部变量变成全局变量</title>
+    <script>
+        (function (window) {
+            function Random() {
+
+            }
+
+            Random.prototype.getRandom = function (min, max) {
+                return Math.floor(Math.random()*(max-min)+min);
+            };
+
+            window.Random = new Random();
+        })(window);
+
+        (function () {
+            console.log(Random.getRandom(0, 5));
+        })();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

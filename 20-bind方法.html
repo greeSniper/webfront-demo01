@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bind方法</title>
+</head>
+<body>
+<script>
+    function Person() {
+        this.number = parseInt(Math.random()*10+1);
+    }
+    Person.prototype.show1 = function () {
+        console.log(this.number);
+        this.number = parseInt(Math.random()*10+1);
+    };
+    Person.prototype.show2 = function () {
+        // setInterval(this.show1(), 1000); // 此时的this是window
+        setInterval(this.show1.bind(this), 1000); // 改变this为per
+    };
+
+    var per = new Person();
+    per.show2();
+</script>
+</body>
+</html>

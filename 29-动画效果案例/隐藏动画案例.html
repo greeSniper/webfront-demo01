@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隐藏动画案例</title>
+    <style>
+        div {
+            width: 400px;
+        }
+
+        img {
+            width: 90px;
+            height: 90px;
+            vertical-align: top;
+        }
+
+    </style>
+    <script src="../jquery-1.12.1.js"></script>
+    <script>
+        $(function () {
+            $("#btn1").click(function () {
+                $("#div1>img:last").hide(300, function f1() {
+                    $(this).prev().hide(300, f1);
+                });
+            });
+
+            $("#btn2").click(function () {
+                $("#div1>img:first").show(300, function f1() {
+                    $(this).next().show(300, f1);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" value="隐藏动画" id="btn1"/>
+    <input type="button" value="显示动画" id="btn2"/>
+    <div id="div1">
+        <img src="images/1.jpg"/>
+        <img src="images/2.jpg"/>
+        <img src="images/3.jpg"/>
+        <img src="images/4.jpg"/>
+    </div>
+</body>
+</html>
