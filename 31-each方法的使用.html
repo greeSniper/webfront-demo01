@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>each方法的使用</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            margin-right: 10px;
+            float: left;
+        }
+    </style>
+    <script src="jquery-1.12.1.js"></script>
+    <script>
+        $(function () {
+            $("#uu>li").each(function (index, ele) {
+                var opacity = (index+1)/10;
+                $(ele).css("opacity", opacity);
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul id="uu">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+</body>
+</html>
