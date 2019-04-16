@@ -1,0 +1,29 @@
+{
+  "data": [
+    {"kana": "あ", "katakana": "ア", "roma": "a", "mp3": "mp3/a.mp3"},
+    {"kana": "い", "katakana": "イ", "roma": "i", "mp3": "mp3/i.mp3"},
+    {"kana": "う", "katakana": "ウ", "roma": "u", "mp3": "mp3/u.mp3"},
+    {"kana": "え", "katakana": "エ", "roma": "e", "mp3": "mp3/e.mp3"},
+    {"kana": "お", "katakana": "オ", "roma": "o", "mp3": "mp3/o.mp3"},
+    {"kana": "か", "katakana": "カ", "roma": "ka", "mp3": "mp3/ka.mp3"},
+    {"kana": "き", "katakana": "キ", "roma": "ki", "mp3": "mp3/ki.mp3"},
+    {"kana": "く", "katakana": "ク", "roma": "ku", "mp3": "mp3/ku.mp3"},
+    {"kana": "け", "katakana": "ケ", "roma": "ke", "mp3": "mp3/ke.mp3"},
+    {"kana": "こ", "katakana": "コ", "roma": "ko", "mp3": "mp3/ko.mp3"},
+    {"kana": "さ", "katakana": "サ", "roma": "sa", "mp3": "mp3/sa.mp3"},
+    {"kana": "し", "katakana": "シ", "roma": "shi", "mp3": "mp3/si.mp3"},
+    {"kana": "す", "katakana": "ス", "roma": "su", "mp3": "mp3/su.mp3"},
+    {"kana": "せ", "katakana": "セ", "roma": "se", "mp3": "mp3/se.mp3"},
+    {"kana": "そ", "katakana": "ソ", "roma": "so", "mp3": "mp3/so.mp3"},
+	{"kana": "た", "katakana": "タ", "roma": "ta", "mp3": "mp3/ta.mp3"},
+	{"kana": "ち", "katakana": "チ", "roma": "chi", "mp3": "mp3/ci.mp3"},
+	{"kana": "つ", "katakana": "ツ", "roma": "tsu", "mp3": "mp3/cu.mp3"},
+	{"kana": "て", "katakana": "テ", "roma": "te", "mp3": "mp3/te.mp3"},
+	{"kana": "と", "katakana": "ト", "roma": "to", "mp3": "mp3/to.mp3"},
+	{"kana": "な", "katakana": "ナ", "roma": "na", "mp3": "mp3/na.mp3"},
+	{"kana": "に", "katakana": "ニ", "roma": "ni", "mp3": "mp3/ni.mp3"},
+	{"kana": "ぬ", "katakana": "ヌ", "roma": "nu", "mp3": "mp3/nu.mp3"},
+	{"kana": "ね", "katakana": "ネ", "roma": "ne", "mp3": "mp3/ne.mp3"},
+	{"kana": "の", "katakana": "ノ", "roma": "no", "mp3": "mp3/no.mp3"}
+  ]
+}
